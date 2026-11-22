@@ -1,0 +1,40 @@
+[project]
+name = "rknn-mobilenetv2-uav123"
+version = "0.1.0"
+description = "Run MobileNetV2 with the RKNN Toolkit2 PC simulator on a UAV123 frame"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "numpy>=1.26,<2",
+    "matplotlib>=3.8,<4",
+    "onnx==1.16.1",
+    "pillow>=10",
+    "rknn-toolkit2==2.3.2",
+    "torch>=2.2,<2.7",
+    "torchvision>=0.17,<0.22",
+    "setuptools<81",
+]
+
+[build-system]
+requires = ["setuptools>=68,<81"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+rknn-mobilenet = "rknn_mobilenet:main"
+train-uav = "train_uav:main"
+
+[tool.uv]
+package = true
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+
+[tool.setuptools]
+py-modules = ["rknn_mobilenet", "uav_data", "uav_model", "train_uav"]
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+torchvision = [{ index = "pytorch-cpu" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

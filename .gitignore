@@ -1,0 +1,14 @@
+.venv/
+.venv-gpu/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+build/
+dist/
+models/*.onnx
+models/*.rknn
+models/*.pth
+check*.onnx
+*.egg-info/
